@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="shortcut icon" href="logomesa.png" type="image/x-icon">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>TechRadar - MESA</title>
+</head>
+<body>
+    <!-- <nav class="navbar navbar-dark bg-dark mb-4">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">
+                <img src="logo.png" alt="Logo" width="30" height="30" class="d-inline-block align-text-top">
+                Nombre de la Empresa
+            </a>
+        </div>
+    </nav> -->
+
+    <div class="radar-container">
+        <div id="radar"></div>
+        <div class="radar-line"></div>        
+        <div class="zone-label high-impact">High Impact</div>
+        <div class="zone-label low-impact">Low Impact</div>
+    </div>
+
+    <!-- Modal de Bootstrap -->
+    <div class="modal fade" id="techModal" tabindex="-1" aria-labelledby="techModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="techModalLabel">Detalles de la Tecnología</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p><strong>Nombre:</strong> <span id="modal-tech-name"></span></p>
+                    <p><strong>Categoría:</strong> <span id="modal-tech-category"></span></p>
+                    <p><strong>Cuadrante:</strong> <span id="modal-tech-quadrant"></span></p>
+                    <p><strong>Nivel de Evaluación:</strong> <span id="modal-tech-ring"></span></p>
+                    <p><strong>Descripción:</strong> <span id="modal-tech-description"></span></p>
+                    <p><strong>Enlace:</strong> <a id="modal-tech-link" href="#" target="_blank">Ver artículo</a></p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div> 
+    
+    <!-- Formulario para añadir tecnologías -->
+    <div class="add-blip-container">
+        <h3>Añadir Nueva Tecnología</h3>
+        <form id="add-blip-form">
+            <div class="form-group">
+                <label for="tech-name">Nombre</label>
+                <input type="text" id="tech-name" class="form-control" required />
+            </div>
+            <div class="form-group">
+                <label for="tech-category">Categoría</label>
+                <select id="tech-category" class="form-control">
+                    <option value="Production Technologies">Tecnologías de Producción</option>
+                    <option value="Quality Control">Control de Calidad</option>
+                    <option value="Logistics">Logística</option>
+                    <option value="Maintenance">Mantenimiento</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="tech-quadrant">Cuadrante</label>
+                <select id="tech-quadrant" class="form-control">
+                    <option value="0">Alto Impacto</option>
+                    <option value="1">Bajo Impacto</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="tech-ring">Nivel de Evaluación</label>
+                <select id="tech-ring" class="form-control">
+                    <option value="0">Adoptar</option>
+                    <option value="1">Prueba</option>
+                    <option value="2">Evaluar</option>
+                    <option value="3">En Espera</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="tech-link">Enlace al Artículo</label>
+                <input type="url" id="tech-link" class="form-control" placeholder="https://example.com" />
+            </div>
+            <div class="form-group">
+                <label for="tech-description">Descripción</label>
+                <textarea id="tech-description" class="form-control" rows="3"
+                    placeholder="Descripción de la tecnología"></textarea>
+            </div>
+            <button type="submit" class="btn btn-success">Añadir Tecnología</button>
+        </form>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="main.js"></script>
+</body>
+</html>

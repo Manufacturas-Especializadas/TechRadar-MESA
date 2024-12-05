@@ -1,0 +1,30 @@
+[
+    {
+        "name": "React",
+        "quadrant": 0,
+        "ring": 0,
+        "description": "A JavaScript library for building user interfaces.",
+        "category": "Frontend"
+    },
+    {
+        "name": "Angular",
+        "quadrant": 1,
+        "ring": 1,
+        "description": "A TypeScript-based web application framework.",
+        "category": "Frontend"
+    },
+    {
+        "name": "Vue.js",
+        "quadrant": 2,
+        "ring": 2,
+        "description": "A progressive framework for building user interfaces.",
+        "category": "Frontend"
+    },
+    {
+        "name": "CShap",
+        "quadrant": 1,
+        "ring": 3,
+        "description": "A progressive framework for building user interfaces.",
+        "category": "Backend"
+    }
+]
