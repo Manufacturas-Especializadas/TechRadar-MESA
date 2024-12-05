@@ -17,7 +17,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   const centerY = radar.clientHeight / 2;
 
   // API Endpoint
-  const apiUrl = "https://localhost:44347/api/Blips";
+  const apiUrl = "app-mesa-techradar-prod.azurewebsites.net/api";
 
   // Dibuja anillos del radar
   rings.forEach((radius) => {
