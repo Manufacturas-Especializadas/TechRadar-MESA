@@ -261,10 +261,20 @@ body {
     left: 50%;
 }
 
-/* Low Impact (dentro, parte inferior) */
 .low-impact {
     top: 80%;
     left: 50%;
+}
+
+.high-cost {
+    top: 50%; /* Alineado al centro vertical */
+    left: 10%; /* Cerca del borde izquierdo */
+}
+
+/* Bajo costo (eje X, derecha) */
+.low-cost {
+    top: 50%; /* Alineado al centro vertical */
+    left: 90%; /* Cerca del borde derecho */
 }
 
 .add-blip-container {
