@@ -12,7 +12,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   const modalTechLink = document.getElementById("modal-tech-link");
 
   // Configuración de los anillos
-  const rings = [25, 50, 100, 150, 200];
+  const rings = [25, 50, 100, 150, 200, 250];
   const centerX = radar.clientWidth / 2;
   const centerY = radar.clientHeight / 2;
 
