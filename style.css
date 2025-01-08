@@ -45,7 +45,7 @@ body {
     z-index: 2;
 }
 
-.radar-logo{
+.radar-logo {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -54,7 +54,7 @@ body {
     z-index: 1;
 }
 
-.radar-logo img{
+.radar-logo img {
     max-width: 250px;
     max-height: 250px;
     pointer-events: none;
