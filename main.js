@@ -17,7 +17,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   const centerY = radar.clientHeight / 2;
 
   // API Endpoint
-  const apiUrl = "https://app-mesa-techradar-prod.azurewebsites.net/api/blips";
+  const apiUrl = "https://localhost:44347/api/blips";
 
   // Dibuja anillos del radar
   rings.forEach((radius) => {
@@ -79,8 +79,64 @@ document.addEventListener("DOMContentLoaded", async () => {
     label.style.top = `${blip.y + 10}px`;
     radar.appendChild(label);
 
-    // Evento para abrir el modal al hacer clic en el blip
-    blipElement.addEventListener("click", () => showTechModal(blip));
+    // Variable para manejar el arrastre
+    let isDragging = false;
+
+    blipElement.addEventListener("mousedown", (e) => {
+      isDragging = true;
+      const rect = radar.getBoundingClientRect();
+      blipElement.dataset.offsetX =
+        e.clientX - blipElement.offsetLeft - rect.left;
+      blipElement.dataset.offsetY =
+        e.clientY - blipElement.offsetTop - rect.top;
+    });
+
+    window.addEventListener("mousemove", (e) => {
+      if (isDragging) {
+        const rect = radar.getBoundingClientRect();
+        const offsetX = parseFloat(blipElement.dataset.offsetX);
+        const offsetY = parseFloat(blipElement.dataset.offsetY);
+        const newX = e.clientX - rect.left - offsetX;
+        const newY = e.clientY - rect.top - offsetY;
+
+        blipElement.style.left = `${newX}px`;
+        blipElement.style.top = `${newY}px`;
+        label.style.left = `${newX + 6}px`;
+        label.style.top = `${newY + 16}px`;
+
+        blip.x = newX + 6;
+        blip.y = newY + 6;
+      }
+    });
+
+    window.addEventListener("mouseup", async () => {
+      if (isDragging) {
+        isDragging = false;
+
+        try {
+          const response = await fetch(`${apiUrl}/${blip.id}`, {
+            method: "PATCH",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ x: blip.x, y: blip.y }),
+          });
+
+          if (!response.ok) {
+            const errorText = await response.text();
+            console.error("Error updating blip position:", errorText);
+            alert("Failed to save the new position.");
+          }
+        } catch (error) {
+          console.error("Network error:", error);
+          alert("A network error occurred while saving the position.");
+        }
+      }
+    });
+
+    blipElement.addEventListener("click", (e) => {
+      if (!isDragging) {
+        showTechModal(blip);
+      }
+    });
   };
 
   // Carga blips desde la API
@@ -109,6 +165,19 @@ document.addEventListener("DOMContentLoaded", async () => {
     const ring = parseInt(document.getElementById("tech-ring").value);
     const link = document.getElementById("tech-link").value;
     const description = document.getElementById("tech-description").value;
+
+    // Verifica que los campos requeridos no estén vacíos
+    if (
+      !name ||
+      !category ||
+      isNaN(quadrant) ||
+      isNaN(ring) ||
+      !link ||
+      !description
+    ) {
+      alert("Please fill out all required fields.");
+      return;
+    }
 
     // Calcula posición
     const angle = (Math.PI / 2) * quadrant + Math.random() * (Math.PI / 2);
